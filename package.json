@@ -2,15 +2,17 @@
 	"name": "react-basic-template",
 	"version": "1.0.0",
 	"description": "",
-	"main": "db.js",
 	"dependencies": {
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.5",
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-2": "^6.24.1",
 		"express": "^4.16.4",
+		"nodemon": "^1.18.11",
+		"pg": "^7.9.0",
 		"react": "^16.8.3",
 		"react-dom": "^16.8.3",
+		"sequelize": "^5.3.5",
 		"webpack": "^4.29.6",
 		"webpack-cli": "^3.2.3"
 	},
@@ -20,13 +22,15 @@
 			"stage-2"
 		]
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"nodemon": "nodemon^1.18.11"
+	},
 	"scripts": {
 		"start": "node server/index.js",
 		"postinstall": "npm run webpack",
 		"webpack": "webpack",
 		"webpack:dev": "npm run webpack -- --mode=development --watch",
-		"start:dev": "npm run webpack:dev & nodemon server/index.js --ignore client/ --ignore dist/"
+		"start:dev": "npm run webpack:dev & DATABASE_URL=postgres://localhost/senior_enrichment nodemon server/index.js --ignore client/ --ignore dist/"
 	},
 	"keywords": [],
 	"author": "",

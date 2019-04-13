@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Nav = ({ location }) => {
 	const pages = [
 		{ key: 1, url: '/', name: 'Home' },
-		{ key: 2, url: '/campuses', name: 'Campuses' },
+		{ key: 2, url: '/schools', name: 'Campuses' },
 		{ key: 3, url: '/students', name: 'Students' }
 	];
 

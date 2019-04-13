@@ -1,5 +1,7 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import axios from 'axios';
 
 // action types
 const GET_SCHOOLS = 'GET_SCHOOLS';
@@ -36,13 +38,8 @@ const fetchStudents = () => {
 	};
 };
 
-const initialState = {
-	schools: [],
-	students: []
-};
-
-const schoolsReducer = (state = initialState.schools, action) => {
-	switch (action) {
+const schools = (state = [], action) => {
+	switch (action.type) {
 		case GET_SCHOOLS:
 			return action.schools;
 		default:
@@ -50,8 +47,8 @@ const schoolsReducer = (state = initialState.schools, action) => {
 	}
 };
 
-const studentsReducer = (state = initialState.students, action) => {
-	switch (action) {
+const students = (state = [], action) => {
+	switch (action.type) {
 		case GET_STUDENTS:
 			return action.students;
 		default:
@@ -60,10 +57,10 @@ const studentsReducer = (state = initialState.students, action) => {
 };
 
 const reducer = combineReducers({
-	schoolsReducer,
-	studentsReducer
+	schools,
+	students
 });
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export { store, fetchSchools, fetchStudents };

@@ -16,11 +16,12 @@ const School = conn.define('school', {
 			'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_-YSB7M3hAhVKTd8KHWHcBAQQjRx6BAgBEAU&url=https%3A%2F%2Fthebestschools.org%2Ffeatures%2Fmost-amazing-college-campus-buildings%2F&psig=AOvVaw2RrFodp86G_JZK5SfLVVHe&ust=1555271510716014'
 	},
 	address: {
-		type: Sequelize.STRING
-		// validate: {
-		// 	allowNull: false,
-		// 	notEmpty: true
-		// }
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			notNull: true,
+			notEmpty: true
+		}
 	},
 	description: {
 		type: Sequelize.TEXT
@@ -28,8 +29,44 @@ const School = conn.define('school', {
 });
 
 const Student = conn.define('student', {
-	firstName: Sequelize.STRING,
-	lastName: Sequelize.STRING
+	firstName: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			notNull: true,
+			notEmpty: true
+		}
+	},
+	lastName: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			notNull: true,
+			notEmpty: true
+		}
+	},
+	email: {
+		type: Sequelize.STRING
+		// allowNull: false,
+		// validate: {
+		// 	isEmail: true,
+		// 	notNull: true,
+		// 	notEmpty: true
+		// }
+	},
+	imageUrl: {
+		type: Sequelize.STRING,
+		defaultValue:
+			'https://www.ldatschool.ca/wp-content/uploads/2015/03/Young-student.jpg'
+	}
+	// gpa: {
+	// 	type: Sequelize.FLOAT,
+	// 	validate: {
+	// 		min: 0,
+	// 		max: 4
+	// 	}
+	// 	// need to create random gpa
+	// }
 });
 
 School.hasMany(Student);
@@ -40,7 +77,7 @@ const schoolSeed = [
 	{
 		name: 'NYU',
 		imageUrl:
-			'https://c8.alamy.com/comp/CXTXG6/new-york-city-ny-usa-students-walking-outside-at-new-york-university-CXTXG6.jpg',
+			'https://www.veritasprep.com/blog/wp-content/uploads/2014/09/NYU-Campus.jpg',
 		address: `60 Washington Square South, Suite 210
 	New York, NY 10012`,
 		description: `In 1831, Albert Gallatin, the distinguished statesman who served as secretary of the treasury under Presidents Thomas Jefferson and James Madison, declared his intention to establish "in this immense and fast-growing city ... a system of rational and practical education fitting for all and graciously opened to all."

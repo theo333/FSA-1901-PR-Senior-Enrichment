@@ -16,6 +16,10 @@ app.get('/', (req, res, next) =>
 	res.sendFile(path.join(__dirname, '../client', 'index.html'))
 );
 
+app.get('/style.css', (req, res, next) =>
+	res.sendFile(path.join(__dirname, '../client', 'style.css'))
+);
+
 // api routes
 app.get('/api/students', (req, res, next) => {
 	Student.findAll()
@@ -26,6 +30,18 @@ app.get('/api/students', (req, res, next) => {
 app.get('/api/schools', (req, res, next) => {
 	School.findAll()
 		.then(schools => res.json(schools))
+		.catch(next);
+});
+
+app.get('/api/students/:id', (req, res, next) => {
+	Student.findByPk(req.params.id)
+		.then(student => res.json(student))
+		.catch(next);
+});
+
+app.get('/api/schools/:id', (req, res, next) => {
+	School.findByPk(req.params.id)
+		.then(school => res.json(school))
 		.catch(next);
 });
 

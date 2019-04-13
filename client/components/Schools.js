@@ -6,9 +6,11 @@ const Schools = props => {
 	return (
 		<ul className='list-group'>
 			{schools.map(school => {
-				const { id, name } = school;
+				// console.log(school);
+				const { id, name, imageUrl } = school;
 				return (
 					<li key={id} className='list-group-item'>
+						<img src={imageUrl} className='school-img' />
 						{name}
 					</li>
 				);

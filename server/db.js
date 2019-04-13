@@ -1,8 +1,5 @@
 const Sequelize = require('sequelize');
-const conn = new Sequelize(
-	process.env.DATABASE_URL
-	// { logging: true }
-);
+const conn = new Sequelize(process.env.DATABASE_URL, { logging: false });
 
 const School = conn.define('school', {
 	name: Sequelize.STRING
@@ -42,7 +39,6 @@ const syncAndSeed = () => {
 			);
 		})
 		.then(([school1, school2, school3, school4]) => {
-			console.log(school2.id);
 			return Promise.all([
 				Student.create({
 					firstName: 'Joe',

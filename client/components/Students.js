@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Schools = props => {
-	const { schools } = props;
+const Students = ({ students }) => {
+	// const { students } = props;
 	return (
 		<ul className='list-group'>
-			{schools.map(school => {
-				const { id, name } = school;
+			{students.map(student => {
+				const { id, firstName, lastName } = student;
 				return (
 					<li key={id} className='list-group-item'>
-						{name}
+						{firstName} {lastName}
 					</li>
 				);
 			})}
@@ -19,8 +19,8 @@ const Schools = props => {
 
 const mapStateToProps = state => {
 	return {
-		schools: state.schools
+		students: state.students
 	};
 };
 
-export default connect(mapStateToProps)(Schools);
+export default connect(mapStateToProps)(Students);

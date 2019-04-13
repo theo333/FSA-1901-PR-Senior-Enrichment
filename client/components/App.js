@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { fetchSchools, fetchStudents } from '../store';
 import Nav from './Nav';
 import Schools from './Schools';
-import { fetchSchools, fetchStudents } from '../store';
+import Students from './Students';
 
 class App extends Component {
 	constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
 				<Route render={location => <Nav location={location} />} />
 				<Switch>
 					<Route path='/schools' component={Schools} />
+					<Route path='/students' component={Students} />
 				</Switch>
 			</Router>
 		);

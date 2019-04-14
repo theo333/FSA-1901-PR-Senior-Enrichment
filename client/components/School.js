@@ -12,9 +12,8 @@ const School = ({ school, schoolStudents }) => {
 			<p>{school ? school.description : ''} </p>
 			<h3>Students</h3>
 			<ul className=''>
-				{schoolStudents === []
+				{schoolStudents.length
 					? schoolStudents.map(student => {
-							console.log('student ', student);
 							const { firstName, lastName } = student;
 							return (
 								<li key={student.id} className=''>
@@ -32,7 +31,7 @@ const mapStateToProps = (state, { match }) => {
 	const schoolId = match.params.id;
 	return {
 		schoolStudents: state.students.filter(student => {
-			return student.schoolId === match.params.id;
+			return student.schoolId === Number(match.params.id);
 		}),
 		school: state.schools.find(school => school.id === Number(match.params.id))
 	};

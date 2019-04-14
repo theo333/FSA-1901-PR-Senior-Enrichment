@@ -6,8 +6,8 @@ import { fetchSchools, fetchStudents } from '../store';
 import Nav from './Nav';
 import Schools from './Schools';
 import Students from './Students';
-import School from './School';
-import Student from './Student';
+import SchoolSingle from './SchoolSingle';
+import StudentSingle from './StudentSingle';
 
 class App extends Component {
 	constructor(props) {
@@ -26,8 +26,8 @@ class App extends Component {
 				<Switch>
 					<Route exact path='/schools' component={Schools} />
 					<Route exact path='/students' component={Students} />
-					<Route path='/schools/:id' component={School} />
-					{/* <Route path='/students/:id' component={Student} /> */}
+					<Route path='/schools/:id' component={SchoolSingle} />
+					<Route path='/students/:id' component={StudentSingle} />
 				</Switch>
 			</Router>
 		);

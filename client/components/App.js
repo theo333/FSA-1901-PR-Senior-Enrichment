@@ -6,6 +6,8 @@ import { fetchSchools, fetchStudents } from '../store';
 import Nav from './Nav';
 import Schools from './Schools';
 import Students from './Students';
+import School from './School';
+import Student from './Student';
 
 class App extends Component {
 	constructor(props) {
@@ -22,8 +24,10 @@ class App extends Component {
 				<h1>Campuses and Students</h1>
 				<Route render={location => <Nav location={location} />} />
 				<Switch>
-					<Route path='/schools' component={Schools} />
-					<Route path='/students' component={Students} />
+					<Route exact path='/schools' component={Schools} />
+					<Route exact path='/students' component={Students} />
+					<Route path='/schools/:id' component={School} />
+					{/* <Route path='/students/:id' component={Student} /> */}
 				</Switch>
 			</Router>
 		);

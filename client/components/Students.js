@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Students = ({ students }) => {
-	// const { students } = props;
 	return (
 		<ul className='list-group'>
 			{students.map(student => {

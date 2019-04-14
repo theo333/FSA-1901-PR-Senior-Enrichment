@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Schools = props => {
 	const { schools } = props;
@@ -10,8 +11,10 @@ const Schools = props => {
 				const { id, name, imageUrl } = school;
 				return (
 					<li key={id} className='list-group-item'>
-						<img src={imageUrl} className='school-img' />
-						{name}
+						<Link to={`/schools/${id}`} className=''>
+							<img src={imageUrl} className='school-img' />
+							{name}
+						</Link>
 					</li>
 				);
 			})}

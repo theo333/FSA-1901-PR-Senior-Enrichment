@@ -65,7 +65,7 @@ const createSchool = school => {
 const createStudent = student => {
 	return dispatch => {
 		return axios
-			.post('/api/student/create', student)
+			.post('/api/students/create', student)
 			.then(({ data }) => dispatch(getStudentsAfterCreateStudents(data)));
 	};
 };
@@ -85,6 +85,8 @@ const students = (state = [], action) => {
 	switch (action.type) {
 		case GET_STUDENTS:
 			return action.students;
+		case GET_STUDENTS_AFTER_CREATE_STUDENT:
+			return [...state, action.student];
 		default:
 			return state;
 	}

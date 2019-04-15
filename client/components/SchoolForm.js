@@ -43,7 +43,6 @@ class SchoolForm extends Component {
 	render() {
 		const { handleChange, handleSubmit } = this;
 		const { name, imageUrl, address, description, errors } = this.state;
-		// console.log('props: ', this.props);
 		return (
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>

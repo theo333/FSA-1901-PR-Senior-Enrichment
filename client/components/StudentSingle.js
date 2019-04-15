@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const StudentSingle = props => {
 	const { school, student } = props;
-	const { firstName, lastName, imageUrl, email, gpa } = student;
+	const { id, firstName, lastName, imageUrl, email, gpa } = student;
 	return (
 		<div>
 			<h1>
@@ -23,6 +23,7 @@ const StudentSingle = props => {
 						'Not signed up yet'
 					)}
 				</li>
+				<Link to={`/students/update/${id}`}>Edit Profile</Link>
 			</ul>
 		</div>
 	);

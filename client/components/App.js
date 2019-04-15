@@ -30,9 +30,9 @@ class App extends Component {
 					<Route exact path='/schools' component={Schools} />
 					<Route exact path='/students' component={Students} />
 					<Route exact path='/schools/create' component={SchoolForm} />
+					<Route exact path='/students/create' component={StudentForm} />
 					<Route path='/schools/:id' component={SchoolSingle} />
 					<Route path='/students/:id' component={StudentSingle} />
-					{/* <Route exact path='/students/create' component={StudentForm} /> */}
 					{/* <Route component={Errors} /> */}
 				</Switch>
 			</Router>

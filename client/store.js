@@ -6,6 +6,8 @@ import axios from 'axios';
 // action types
 const GET_SCHOOLS = 'GET_SCHOOLS';
 const GET_STUDENTS = 'GET_STUDENTS';
+const GET_SCHOOLS_AFTER_CREATE_SCHOOL = 'GET_SCHOOLS_AFTER_CREATE_SCHOOL';
+const GET_STUDENTS_AFTER_CREATE_STUDENT = 'GET_STUDENTS_AFTER_CREATE_STUDENT';
 
 // action creators
 const getSchools = schools => {
@@ -19,6 +21,20 @@ const getStudents = students => {
 	return {
 		type: GET_STUDENTS,
 		students
+	};
+};
+
+const getSchoolsAfterCreateSchool = school => {
+	return {
+		type: GET_SCHOOLS_AFTER_CREATE_SCHOOL,
+		school
+	};
+};
+
+const getStudentsAfterCreateStudents = student => {
+	return {
+		type: GET_STUDENTS_AFTER_CREATE_STUDENT,
+		student
 	};
 };
 
@@ -38,10 +54,28 @@ const fetchStudents = () => {
 	};
 };
 
+const createSchool = school => {
+	return dispatch => {
+		return axios
+			.post('/api/schools/create', school)
+			.then(({ data }) => dispatch(getSchoolsAfterCreateSchool(data)));
+	};
+};
+
+const createStudent = student => {
+	return dispatch => {
+		return axios
+			.post('/api/student/create', student)
+			.then(({ data }) => dispatch(getStudentsAfterCreateStudents(data)));
+	};
+};
+
 const schools = (state = [], action) => {
 	switch (action.type) {
 		case GET_SCHOOLS:
 			return action.schools;
+		case GET_SCHOOLS_AFTER_CREATE_SCHOOL:
+			return [...state, action.school];
 		default:
 			return state;
 	}
@@ -63,4 +97,4 @@ const reducer = combineReducers({
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
-export { store, fetchSchools, fetchStudents };
+export { store, fetchSchools, fetchStudents, createSchool, createStudent };

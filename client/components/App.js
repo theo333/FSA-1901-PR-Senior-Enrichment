@@ -8,10 +8,13 @@ import Schools from './Schools';
 import Students from './Students';
 import SchoolSingle from './SchoolSingle';
 import StudentSingle from './StudentSingle';
+import SchoolForm from './SchoolForm';
+import StudentForm from './StudentForm';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {};
 	}
 	componentDidMount() {
 		this.props.fetchSchools();
@@ -26,8 +29,11 @@ class App extends Component {
 				<Switch>
 					<Route exact path='/schools' component={Schools} />
 					<Route exact path='/students' component={Students} />
+					<Route exact path='/schools/create' component={SchoolForm} />
 					<Route path='/schools/:id' component={SchoolSingle} />
 					<Route path='/students/:id' component={StudentSingle} />
+					{/* <Route exact path='/students/create' component={StudentForm} /> */}
+					{/* <Route component={Errors} /> */}
 				</Switch>
 			</Router>
 		);

@@ -45,6 +45,18 @@ app.get('/api/schools/:id', (req, res, next) => {
 		.catch(next);
 });
 
+app.post('/api/schools/create', (req, res, next) => {
+	School.create(req.body)
+		.then(school => res.send(school))
+		.catch(next);
+});
+
+app.post('/api/students/create', (req, res, next) => {
+	Student.create(req.body)
+		.then(student => res.send(student))
+		.catch(next);
+});
+
 syncAndSeed();
 
 app.listen(port, () => console.log(`listening on port ${port}`));

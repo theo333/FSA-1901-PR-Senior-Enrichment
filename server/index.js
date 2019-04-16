@@ -46,7 +46,6 @@ app.get('/api/schools/:id', (req, res, next) => {
 });
 
 app.post('/api/schools/create', (req, res, next) => {
-	console.log('do you see this?');
 	School.create(req.body)
 		.then(school => res.send(school))
 		.catch(next);
@@ -75,10 +74,11 @@ app.delete('/api/students/delete/:id', (req, res, next) => {
 // general error handling
 // TODO
 app.use((err, req, res, next) => {
-	// console.error('backend err msg: ', err.message);
-	console.log('backend err msg: ', err.message);
-	res.status(err.status || 500);
-	res.send(err.message || 'Internal server error');
+	// console.error('backend err msg: ', JSON.stringify(err, null, 3));
+	const errors = err.errors.map(error => error.message);
+	err.status = errors.length ? '400' : '';
+	// console.log('err.status: ', err.status);
+	res.status(errors.length ? '400' : '500').send({ errors });
 });
 
 syncAndSeed();

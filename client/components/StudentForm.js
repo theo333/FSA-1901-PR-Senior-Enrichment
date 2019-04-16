@@ -23,8 +23,8 @@ class StudentForm extends Component {
 		this.setState(
 			{
 				[ev.target.name]: ev.target.value
-			},
-			() => console.log(this.state)
+			}
+			// () => console.log(this.state)
 		);
 	};
 
@@ -37,9 +37,10 @@ class StudentForm extends Component {
 			this.props
 				.createStudent(student)
 				.then(() => this.props.history.push('/students'))
-				.catch(err => {
-					console.log('StudentForm error on create: ', err);
-					this.setState({ errors: [...err.response.data.errors] });
+				.catch(error => {
+					this.setState({
+						errors: error.response.data.errors
+					});
 				});
 		}
 	};

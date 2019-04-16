@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { deleteSchool } from '../store';
+
 const Schools = props => {
-	const { schools } = props;
+	const { schools, deleteSchool } = props;
 	return (
 		<div>
-			<Link to='/schools/create' className='align-right'>
-				<i className='fas fa-plus plus-add-item' />
-			</Link>
+			<div className='d-flex justify-content-end'>
+				<Link to='/schools/create' className='align-right'>
+					<i className='fas fa-plus plus-add-item' />
+				</Link>
+			</div>
 			<ul className='list-group'>
 				{schools.map(school => {
 					const { id, name, imageUrl } = school;
@@ -18,6 +22,10 @@ const Schools = props => {
 								<img src={imageUrl} className='school-img' />
 								{name}
 							</Link>
+							<br />
+							<button onClick={() => deleteSchool(id)}>
+								<i className='far fa-trash-alt' />
+							</button>
 						</li>
 					);
 				})}
@@ -32,4 +40,13 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(Schools);
+const mapDispatchToProps = dispatch => {
+	return {
+		deleteSchool: id => dispatch(deleteSchool(id))
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Schools);

@@ -57,6 +57,20 @@ app.post('/api/students/create', (req, res, next) => {
 		.catch(next);
 });
 
+app.delete('/api/schools/delete/:id', (req, res, next) => {
+	School.findByPk(req.params.id)
+		.then(school => school.destroy())
+		.then(() => res.sendStatus(204))
+		.catch(next);
+});
+
+app.delete('/api/students/delete/:id', (req, res, next) => {
+	Student.findByPk(req.params.id)
+		.then(student => student.destroy())
+		.then(() => res.sendStatus(204))
+		.catch(next);
+});
+
 syncAndSeed();
 
 app.listen(port, () => console.log(`listening on port ${port}`));

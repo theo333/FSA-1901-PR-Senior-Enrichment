@@ -38,6 +38,8 @@ const getStudentsAfterCreateStudents = student => {
 	};
 };
 
+// thunks
+
 const fetchSchools = () => {
 	return dispatch => {
 		return axios.get('/api/schools').then(({ data }) => {
@@ -70,6 +72,24 @@ const createStudent = student => {
 	};
 };
 
+const deleteSchool = schoolId => {
+	return dispatch => {
+		return axios
+			.delete(`/api/schools/delete/${schoolId}`)
+			.then(() => dispatch(fetchSchools()));
+	};
+};
+
+const deleteStudent = studentId => {
+	return dispatch => {
+		return axios
+			.delete(`/api/students/delete/${studentId}`)
+			.then(() => dispatch(fetchStudents()));
+	};
+};
+
+// reducers
+
 const schools = (state = [], action) => {
 	switch (action.type) {
 		case GET_SCHOOLS:
@@ -99,4 +119,12 @@ const reducer = combineReducers({
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
-export { store, fetchSchools, fetchStudents, createSchool, createStudent };
+export {
+	store,
+	fetchSchools,
+	fetchStudents,
+	createSchool,
+	createStudent,
+	deleteSchool,
+	deleteStudent
+};

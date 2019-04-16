@@ -2,19 +2,35 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createSchool } from '../store';
+import { createSchool, updateSchool } from '../store';
 
 class SchoolForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+		this.state = this.initialState(this.props.school);
+	}
+
+	initialState = school => {
+		if (this.props.isUpdate && school) {
+			const { id, name, imageUrl, address, description } = school;
+			return {
+				id: id ? id : '',
+				name: name ? name : '',
+				imageUrl: imageUrl ? imageUrl : '',
+				address: address ? address : '',
+				description: description ? description : '',
+				errors: []
+			};
+		}
+		return {
+			id: '',
 			name: '',
 			imageUrl: '',
 			address: '',
 			description: '',
 			errors: []
 		};
-	}
+	};
 
 	handleChange = ev => {
 		this.setState(
@@ -29,12 +45,23 @@ class SchoolForm extends Component {
 		ev.preventDefault();
 		const school = { ...this.state };
 		delete school.errors;
-		if (this.props.createSchool) {
-			this.props
-				.createSchool(school)
-				.then(() => this.props.history.push('/schools'))
+		const { createSchool, updateSchool, isUpdate, history } = this.props;
+		if (isUpdate === 'false') {
+			// console.log('isUpdate: ', false);
+			createSchool(school)
+				.then(() => history.push('/schools'))
 				.catch(error => {
-					// console.log('school create errors: ', error.response.data.errors);
+					console.log('school create errors: ', error.response.data.errors);
+					this.setState({
+						errors: error ? error.response.data.errors : []
+					});
+				});
+		} else {
+			// console.log('isUpdate: ', true);
+			updateSchool(school)
+				.then(() => history.push(`/schools/${school.id}`))
+				.catch(error => {
+					console.log('school update errors: ', error.response.data.errors);
 					this.setState({
 						errors: error.response.data.errors
 					});
@@ -44,7 +71,7 @@ class SchoolForm extends Component {
 
 	render() {
 		const { handleChange, handleSubmit } = this;
-		const { name, imageUrl, address, description, errors } = this.state;
+		const { id, name, imageUrl, address, description, errors } = this.state;
 		return (
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
@@ -89,9 +116,13 @@ class SchoolForm extends Component {
 					/>
 				</div>
 				<button type='submit' className='btn btn-primary'>
-					Save | Update
+					{this.props.isUpdate === 'true' ? 'Update' : 'Save'}
 				</button>
-				<Link to='/schools'>
+				<Link
+					to={`${
+						this.props.isUpdate === 'true' ? `/schools/${id}` : '/schools'
+					}`}
+				>
 					<i className='far fa-window-close' />
 				</Link>
 			</form>
@@ -99,13 +130,26 @@ class SchoolForm extends Component {
 	}
 }
 
+const mapStateToProps = (state, { match, isUpdate }) => {
+	let school = {};
+	if (isUpdate) {
+		school = state.schools.find(
+			school => school.id === Number(match.params.id)
+		);
+	}
+	return {
+		school
+	};
+};
+
 const mapDispatchToProps = dispatch => {
 	return {
-		createSchool: school => dispatch(createSchool(school))
+		createSchool: school => dispatch(createSchool(school)),
+		updateSchool: school => dispatch(updateSchool(school))
 	};
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(SchoolForm);

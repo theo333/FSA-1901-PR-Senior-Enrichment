@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const SchoolSingle = ({ school, schoolStudents }) => {
-	// console.log('school: ', schoolStudents);
+	// console.log('school: ', schoolStudents);	}
 	return (
 		<div>
 			<h1>{school ? school.name : ''}</h1>
@@ -27,6 +27,7 @@ const SchoolSingle = ({ school, schoolStudents }) => {
 					  })
 					: 'There are no students currently enrolled. Enroll now or we will be out of business soon!'}
 			</ul>
+			<Link to={`/schools/update/${school ? school.id : ''}`}>Edit School</Link>
 		</div>
 	);
 };

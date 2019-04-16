@@ -88,6 +88,23 @@ const deleteStudent = studentId => {
 	};
 };
 
+const updateSchool = school => {
+	// console.log('updateSchool - school.id: ', school.id);
+	return dispatch => {
+		return axios
+			.put(`/api/schools/update/${school.id}`, school)
+			.then(() => dispatch(fetchSchools()));
+	};
+};
+
+const updateStudent = student => {
+	return dispatch => {
+		return axios
+			.put(`/api/students/update/${student.id}`, student)
+			.then(() => dispatch(fetchStudents()));
+	};
+};
+
 // reducers
 
 const schools = (state = [], action) => {
@@ -126,5 +143,7 @@ export {
 	createSchool,
 	createStudent,
 	deleteSchool,
-	deleteStudent
+	deleteStudent,
+	updateSchool,
+	updateStudent
 };

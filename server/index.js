@@ -71,6 +71,20 @@ app.delete('/api/students/delete/:id', (req, res, next) => {
 		.catch(next);
 });
 
+app.put('/api/schools/update/:id', (req, res, next) => {
+	School.findByPk(req.params.id)
+		.then(school => school.update(req.body))
+		.then(updatedSchool => res.status(200).send(updatedSchool))
+		.catch(next);
+});
+
+app.put('/api/students/update/:id', (req, res, next) => {
+	Student.findByPk(req.params.id)
+		.then(student => student.update(req.body))
+		.then(updatedStudent => res.status(200).send(updatedStudent))
+		.catch(next);
+});
+
 // general error handling
 // TODO
 app.use((err, req, res, next) => {

@@ -29,11 +29,25 @@ class App extends Component {
 				<Switch>
 					<Route exact path='/schools' component={Schools} />
 					<Route exact path='/students' component={Students} />
-					<Route exact path='/schools/create' component={SchoolForm} />
+					<Route
+						exact
+						path='/schools/create'
+						render={({ match, history }) => (
+							<SchoolForm isUpdate='false' match={match} history={history} />
+						)}
+					/>
 					<Route exact path='/students/create' component={StudentForm} />
+					<Route
+						exact
+						path='/schools/update/:id'
+						render={({ match, history }) => (
+							<SchoolForm isUpdate='true' match={match} history={history} />
+						)}
+					/>
+					<Route exact path='/students/update/:id' component={StudentForm} />
 					<Route path='/schools/:id' component={SchoolSingle} />
 					<Route path='/students/:id' component={StudentSingle} />
-					{/* <Route component={Errors} /> */}
+					{/* <Route component={ErrorsPage} /> */}
 				</Switch>
 			</Router>
 		);

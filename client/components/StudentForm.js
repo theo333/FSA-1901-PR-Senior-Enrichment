@@ -3,12 +3,42 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { createStudent, deleteStudent } from '../store';
+import { createStudent, deleteStudent, updateStudent } from '../store';
 
 class StudentForm extends Component {
-	constructor() {
-		super();
-		this.state = {
+	constructor(props) {
+		super(props);
+		this.state = this.initialState(this.props.student);
+		console.log(this.state);
+	}
+
+	initialState = student => {
+		console.log('isUpdate: ', this.props.isUpdate);
+		if (this.props.isUpdate === 'true' && student) {
+			console.log('see this?');
+			const {
+				id,
+				firstName,
+				lastName,
+				email,
+				imageUrl,
+				gpa,
+				schoolId
+			} = student;
+
+			return {
+				id: id ? id : '',
+				firstName: firstName ? firstName : '',
+				lastName: lastName ? lastName : '',
+				email: email ? email : '',
+				imageUrl: imageUrl ? imageUrl : '',
+				gpa: gpa ? gpa : '',
+				schoolId: schoolId ? schoolId : '',
+				errors: []
+			};
+		}
+		return {
+			id: '',
 			firstName: '',
 			lastName: '',
 			email: '',
@@ -17,7 +47,7 @@ class StudentForm extends Component {
 			schoolId: '',
 			errors: []
 		};
-	}
+	};
 
 	handleChange = ev => {
 		this.setState(
@@ -32,12 +62,24 @@ class StudentForm extends Component {
 		ev.preventDefault();
 		const student = { ...this.state };
 		delete student.errors;
+		const { createStudent, updateStudent, isUpdate, history } = this.props;
 
-		if (this.props.createStudent) {
-			this.props
-				.createStudent(student)
-				.then(() => this.props.history.push('/students'))
+		if (isUpdate === 'false') {
+			console.log('isUpdate: ', false);
+			createStudent(student)
+				.then(() => history.push('/students'))
 				.catch(error => {
+					console.log('student create errors: ', error.response.data.errors);
+					this.setState({
+						errors: error.response.data.errors
+					});
+				});
+		} else {
+			console.log('isUpdate: ', true);
+			updateStudent(student)
+				.then(() => history.push(`/students/${student.id}`))
+				.catch(error => {
+					console.log('student update errors: ', error.response.data.errors);
 					this.setState({
 						errors: error.response.data.errors
 					});
@@ -47,8 +89,9 @@ class StudentForm extends Component {
 
 	render() {
 		const { handleChange, handleSubmit } = this;
-		const { schools, deleteStudent } = this.props;
+		const { schools, deleteStudent, isUpdate } = this.props;
 		const {
+			id,
 			firstName,
 			lastName,
 			email,
@@ -58,7 +101,7 @@ class StudentForm extends Component {
 			errors
 		} = this.state;
 
-		// console.log('StudentForm props: ', this.props);
+		console.log('StudentForm props: ', this.props);
 		return (
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
@@ -132,10 +175,10 @@ class StudentForm extends Component {
 					</select>
 				</div>
 				<button type='submit' className='btn btn-primary'>
-					Save | Update
+					{this.props.isUpdate === 'true' ? 'Update' : 'Save'}
 				</button>
 				<button onClick={() => deleteStudent(id)}>Delete</button>
-				<Link to='/students'>
+				<Link to={`${isUpdate === 'true' ? `/students/${id}` : '/students'}`}>
 					<i className='far fa-window-close' />
 				</Link>
 			</form>
@@ -143,20 +186,29 @@ class StudentForm extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, { match, isUpdate }) => {
+	let student = {};
+	if (isUpdate === 'true') {
+		student = state.students.find(
+			student => student.id === Number(match.params.id)
+		);
+	}
 	return {
-		schools: state.schools
+		schools: state.schools,
+		student
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
 		createStudent: student => dispatch(createStudent(student)),
-		deleteStudent: id => dispatch(deleteStudent(id))
+		deleteStudent: id => dispatch(deleteStudent(id)),
+		updateStudent: student => dispatch(updateStudent(student))
 	};
 };
 
 StudentForm.propTypes = {
+	id: PropTypes.number,
 	name: PropTypes.string,
 	imageUrl: PropTypes.string,
 	gpa: PropTypes.number,

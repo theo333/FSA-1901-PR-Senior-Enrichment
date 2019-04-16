@@ -132,7 +132,7 @@ class SchoolForm extends Component {
 
 const mapStateToProps = (state, { match, isUpdate }) => {
 	let school = {};
-	if (isUpdate) {
+	if (isUpdate === 'true') {
 		school = state.schools.find(
 			school => school.id === Number(match.params.id)
 		);

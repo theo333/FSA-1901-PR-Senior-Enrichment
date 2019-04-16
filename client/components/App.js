@@ -36,7 +36,13 @@ class App extends Component {
 							<SchoolForm isUpdate='false' match={match} history={history} />
 						)}
 					/>
-					<Route exact path='/students/create' component={StudentForm} />
+					<Route
+						exact
+						path='/students/create'
+						render={({ match, history }) => (
+							<StudentForm isUpdate='false' match={match} history={history} />
+						)}
+					/>
 					<Route
 						exact
 						path='/schools/update/:id'
@@ -44,7 +50,13 @@ class App extends Component {
 							<SchoolForm isUpdate='true' match={match} history={history} />
 						)}
 					/>
-					<Route exact path='/students/update/:id' component={StudentForm} />
+					<Route
+						exact
+						path='/students/update/:id'
+						render={({ match, history }) => (
+							<StudentForm isUpdate='true' match={match} history={history} />
+						)}
+					/>
 					<Route path='/schools/:id' component={SchoolSingle} />
 					<Route path='/students/:id' component={StudentSingle} />
 					{/* <Route component={ErrorsPage} /> */}

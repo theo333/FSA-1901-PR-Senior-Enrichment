@@ -33,16 +33,11 @@ class SchoolForm extends Component {
 			this.props
 				.createSchool(school)
 				.then(() => this.props.history.push('/schools'))
-				// .catch(err => {
-				// 	console.log('create school errors: ', err);
-				// 	// this.setState({ errors: [...err.response.data.errors] });
-				// });
 				.catch(error => {
-					// console.log('front-end error: ', error.response.data.message)
+					// console.log('school create errors: ', error.response.data.errors);
 					this.setState({
-						errors: [...this.state.errors, error.response.data.message]
+						errors: error.response.data.errors
 					});
-					console.log('error state: ', this.state.errors);
 				});
 		}
 	};

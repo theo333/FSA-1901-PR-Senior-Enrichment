@@ -1,20 +1,18 @@
-# \_project_name
+# Senior Enrichment Project:  Campus Directory
 
 ### View live on Heroku
 
-heroku_url
+https://senior-enrichment-tcm.herokuapp.com/#/schools
 
 ### Project Details
 
-- assigned
-- due
-- (?) No beginning repo
-- Replicate this: profs_heroku_url
-- Description:
+- assigned 4/11/19
+- due 4/16/19 
+- Requirements:  https://github.com/FullstackAcademy/1901-FSA-FLEX-NY/tree/master/Senior-Enrichment
+- Description: Campus directory listing Campuses and Students.
 
 ### Challenges
-
--
+- Updating campuses and students
 
 ### Technologies and Concepts Used
 
@@ -23,6 +21,9 @@ heroku_url
 - Sequelize
 - React
 - React Router
+- Redux
+- Thunk
+- Error Handling
 - Axios
 - Deploy to Heroku
 

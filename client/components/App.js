@@ -10,6 +10,7 @@ import SchoolSingle from './SchoolSingle';
 import StudentSingle from './StudentSingle';
 import SchoolForm from './SchoolForm';
 import StudentForm from './StudentForm';
+import ErrorsPage from './ErrorsPage';
 
 class App extends Component {
 	constructor(props) {
@@ -24,7 +25,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<h1>Campuses and Students</h1>
+				<h1>Campus Directory</h1>
 				<Route render={location => <Nav location={location} />} />
 				<Switch>
 					<Route exact path='/schools' component={Schools} />
@@ -59,7 +60,7 @@ class App extends Component {
 					/>
 					<Route path='/schools/:id' component={SchoolSingle} />
 					<Route path='/students/:id' component={StudentSingle} />
-					{/* <Route component={ErrorsPage} /> */}
+					<Route component={ErrorsPage} />
 				</Switch>
 			</Router>
 		);

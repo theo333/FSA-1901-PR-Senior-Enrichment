@@ -9,13 +9,10 @@ class StudentForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = this.initialState(this.props.student);
-		console.log(this.state);
 	}
 
 	initialState = student => {
-		console.log('isUpdate: ', this.props.isUpdate);
 		if (this.props.isUpdate === 'true' && student) {
-			console.log('see this?');
 			const {
 				id,
 				firstName,
@@ -65,7 +62,6 @@ class StudentForm extends Component {
 		const { createStudent, updateStudent, isUpdate, history } = this.props;
 
 		if (isUpdate === 'false') {
-			console.log('isUpdate: ', false);
 			createStudent(student)
 				.then(() => history.push('/students'))
 				.catch(error => {
@@ -75,7 +71,6 @@ class StudentForm extends Component {
 					});
 				});
 		} else {
-			console.log('isUpdate: ', true);
 			updateStudent(student)
 				.then(() => history.push(`/students/${student.id}`))
 				.catch(error => {
@@ -101,7 +96,6 @@ class StudentForm extends Component {
 			errors
 		} = this.state;
 
-		console.log('StudentForm props: ', this.props);
 		return (
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
@@ -177,7 +171,14 @@ class StudentForm extends Component {
 				<button type='submit' className='btn btn-primary'>
 					{this.props.isUpdate === 'true' ? 'Update' : 'Save'}
 				</button>
-				<button onClick={() => deleteStudent(id)}>Delete</button>
+				{/* TODO */}
+				{/* {isUpdate === 'true' ? (
+					<button onClick={() => deleteStudent(id)}>
+						<i className='far fa-trash-alt' />
+					</button>
+				) : (
+					''
+				)} */}
 				<Link to={`${isUpdate === 'true' ? `/students/${id}` : '/students'}`}>
 					<i className='far fa-window-close' />
 				</Link>

@@ -53,7 +53,7 @@ class SchoolForm extends Component {
 				.catch(error => {
 					console.log('school create errors: ', error.response.data.errors);
 					this.setState({
-						errors: error ? error.response.data.errors : []
+						errors: error.response.data.errors
 					});
 				});
 		} else {
@@ -72,6 +72,7 @@ class SchoolForm extends Component {
 	render() {
 		const { handleChange, handleSubmit } = this;
 		const { id, name, imageUrl, address, description, errors } = this.state;
+		const { deleteSchool, isUpdate } = this.props;
 		return (
 			<form onSubmit={handleSubmit}>
 				<div className='form-group'>
@@ -116,13 +117,17 @@ class SchoolForm extends Component {
 					/>
 				</div>
 				<button type='submit' className='btn btn-primary'>
-					{this.props.isUpdate === 'true' ? 'Update' : 'Save'}
+					{isUpdate === 'true' ? 'Update' : 'Save'}
 				</button>
-				<Link
-					to={`${
-						this.props.isUpdate === 'true' ? `/schools/${id}` : '/schools'
-					}`}
-				>
+				{/* TODO */}
+				{/* {isUpdate === 'true' ? (
+					<button onClick={() => deleteSchool(id)}>
+						<i className='far fa-trash-alt' />
+					</button>
+				) : (
+					''
+				)} */}
+				<Link to={`${isUpdate === 'true' ? `/schools/${id}` : '/schools'}`}>
 					<i className='far fa-window-close' />
 				</Link>
 			</form>
@@ -145,7 +150,8 @@ const mapStateToProps = (state, { match, isUpdate }) => {
 const mapDispatchToProps = dispatch => {
 	return {
 		createSchool: school => dispatch(createSchool(school)),
-		updateSchool: school => dispatch(updateSchool(school))
+		updateSchool: school => dispatch(updateSchool(school)),
+		deleteSchool: id => dispatch(deleteSchool(id))
 	};
 };
 

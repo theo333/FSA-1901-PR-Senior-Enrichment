@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Students = ({ students }) => {
+import { deleteStudent } from '../store';
+
+const Students = ({ students, deleteStudent }) => {
 	return (
 		<div>
 			<div className='d-flex justify-content-end'>
-				{/* <div className='flex-row-reverse'> */}
 				<Link to='/students/create'>
 					<i className='fas fa-plus plus-add-item' />
 				</Link>
-				{/* </div> */}
 			</div>
 			<ul className='list-group'>
 				{students.map(student => {
@@ -20,6 +20,9 @@ const Students = ({ students }) => {
 							<Link to={`/students/${id}`}>
 								{firstName} {lastName}
 							</Link>
+							<button onClick={() => deleteStudent(id)}>
+								<i className='far fa-trash-alt' />
+							</button>
 						</li>
 					);
 				})}
@@ -34,4 +37,13 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps)(Students);
+const mapDispatchToProps = dispatch => {
+	return {
+		deleteStudent: id => dispatch(deleteStudent(id))
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Students);

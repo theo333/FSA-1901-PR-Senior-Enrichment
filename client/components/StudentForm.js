@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { createStudent } from '../store';
+import { createStudent, deleteStudent } from '../store';
 
 class StudentForm extends Component {
 	constructor() {
@@ -46,7 +46,7 @@ class StudentForm extends Component {
 
 	render() {
 		const { handleChange, handleSubmit } = this;
-		const { schools } = this.props;
+		const { schools, deleteStudent } = this.props;
 		const {
 			firstName,
 			lastName,
@@ -133,6 +133,7 @@ class StudentForm extends Component {
 				<button type='submit' className='btn btn-primary'>
 					Save | Update
 				</button>
+				<button onClick={() => deleteStudent(id)}>Delete</button>
 				<Link to='/students'>
 					<i className='far fa-window-close' />
 				</Link>
@@ -149,7 +150,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		createStudent: student => dispatch(createStudent(student))
+		createStudent: student => dispatch(createStudent(student)),
+		deleteStudent: id => dispatch(deleteStudent(id))
 	};
 };
 

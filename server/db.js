@@ -8,7 +8,10 @@ const School = conn.define('school', {
 		allowNull: false,
 		validate: {
 			notNull: true,
-			notEmpty: true
+			notEmpty: {
+				args: true,
+				msg: 'Name must be provided.'
+			}
 		}
 	},
 	imageUrl: {
@@ -21,7 +24,10 @@ const School = conn.define('school', {
 		allowNull: false,
 		validate: {
 			notNull: true,
-			notEmpty: true
+			notEmpty: {
+				args: true,
+				msg: 'Address must be provided.'
+			}
 		}
 	},
 	description: {

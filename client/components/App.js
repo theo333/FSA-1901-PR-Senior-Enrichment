@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	HashRouter as Router,
+	Route,
+	Switch,
+	Redirect
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchSchools, fetchStudents } from '../store';
@@ -25,9 +30,12 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<h1>Campus Directory</h1>
+				<div id='site-header' className='text-center'>
+					Campus Directory
+				</div>
 				<Route render={location => <Nav location={location} />} />
 				<Switch>
+					<Route exact path='/' render={() => <Redirect to='/schools' />} />
 					<Route exact path='/schools' component={Schools} />
 					<Route exact path='/students' component={Students} />
 					<Route

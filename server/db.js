@@ -16,8 +16,9 @@ const School = conn.define('school', {
 	},
 	imageUrl: {
 		type: Sequelize.TEXT,
+		// TODO - default image not showing up
 		defaultValue:
-			'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_-YSB7M3hAhVKTd8KHWHcBAQQjRx6BAgBEAU&url=https%3A%2F%2Fthebestschools.org%2Ffeatures%2Fmost-amazing-college-campus-buildings%2F&psig=AOvVaw2RrFodp86G_JZK5SfLVVHe&ust=1555271510716014'
+			'https://www.aclu.org/sites/default/files/styles/content_area_full_width/public/field_image/web17-collegecampus-socialshare-1200x628.jpg?itok=-MIytjVU'
 	},
 	address: {
 		type: Sequelize.STRING,
@@ -41,7 +42,10 @@ const Student = conn.define('student', {
 		allowNull: false,
 		validate: {
 			notNull: true,
-			notEmpty: true
+			notEmpty: {
+				args: true,
+				msg: 'First name must be provided.'
+			}
 		}
 	},
 	lastName: {
@@ -49,17 +53,26 @@ const Student = conn.define('student', {
 		allowNull: false,
 		validate: {
 			notNull: true,
-			notEmpty: true
+			notEmpty: {
+				args: true,
+				msg: 'Last name must be provided.'
+			}
 		}
 	},
 	email: {
-		type: Sequelize.STRING
-		// allowNull: false,
-		// validate: {
-		// 	isEmail: true,
-		// 	notNull: true,
-		// 	notEmpty: true
-		// }
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			isEmail: {
+				args: true,
+				msg: 'A valid email must be provided.'
+			},
+			notNull: true,
+			notEmpty: {
+				args: true,
+				msg: 'Email must be provided.'
+			}
+		}
 	},
 	imageUrl: {
 		type: Sequelize.STRING,
@@ -72,13 +85,12 @@ const Student = conn.define('student', {
 			min: 0,
 			max: 4
 		}
-		// need to create random gpa
+		// TODO - need to create random gpa
 	}
 });
 
 School.hasMany(Student);
 Student.belongsTo(School);
-// Student.belongsTo(School); // ??
 
 const syncAndSeed = () => {
 	return conn
@@ -96,7 +108,7 @@ const syncAndSeed = () => {
 					firstName: 'Joe',
 					lastName: 'Smith',
 					schoolId: school1.id,
-					email: 'joesmith@gmail',
+					email: 'joesmith@gmail.com',
 					imageUrl: 'https://www.nssi.com/media/wysiwyg/images/2.jpg',
 					gpa: 3.0
 				}),
@@ -104,7 +116,7 @@ const syncAndSeed = () => {
 					firstName: 'Jill',
 					lastName: 'Martin',
 					schoolId: school1.id,
-					email: 'jillmartin@gmail',
+					email: 'jillmartin@gmail.com',
 					imageUrl:
 						'https://www.psychology.org.au/getmedia/8dfad19d-9e57-42ee-ba34-5b8f13462fb4/MB-Student-early-career-548x274.jpg',
 					gpa: 3.8
@@ -113,7 +125,7 @@ const syncAndSeed = () => {
 					firstName: 'Sarah',
 					lastName: 'Silverstein',
 					schoolId: school2.id,
-					email: 'sarahsilverstein@gmail',
+					email: 'sarahsilverstein@gmail.com',
 					imageUrl: 'https://www.caprent.com/img/student.jpg',
 					gpa: 4.0
 				}),
@@ -121,6 +133,7 @@ const syncAndSeed = () => {
 					firstName: 'Rajit',
 					lastName: 'Shah',
 					schoolId: school3.id,
+					email: 'rajitshah@yahoo.com',
 					imageUrl:
 						'https://i.dailymail.co.uk/i/pix/2013/09/02/article-2408917-1B95C374000005DC-397_306x423.jpg',
 					gpa: 3.6

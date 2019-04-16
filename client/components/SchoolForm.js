@@ -33,12 +33,9 @@ class SchoolForm extends Component {
 	};
 
 	handleChange = ev => {
-		this.setState(
-			{
-				[ev.target.name]: ev.target.value
-			}
-			// () => console.log(this.state)
-		);
+		this.setState({
+			[ev.target.name]: ev.target.value
+		});
 	};
 
 	handleSubmit = ev => {
@@ -47,7 +44,6 @@ class SchoolForm extends Component {
 		delete school.errors;
 		const { createSchool, updateSchool, isUpdate, history } = this.props;
 		if (isUpdate === 'false') {
-			// console.log('isUpdate: ', false);
 			createSchool(school)
 				.then(() => history.push('/schools'))
 				.catch(error => {
@@ -57,7 +53,6 @@ class SchoolForm extends Component {
 					});
 				});
 		} else {
-			// console.log('isUpdate: ', true);
 			updateSchool(school)
 				.then(() => history.push(`/schools/${school.id}`))
 				.catch(error => {
@@ -75,6 +70,15 @@ class SchoolForm extends Component {
 		const { deleteSchool, isUpdate } = this.props;
 		return (
 			<form onSubmit={handleSubmit}>
+				{errors.length ? (
+					<ul className='alert alert-danger'>
+						{errors.map((error, idx) => {
+							return <li key={idx}>{error}</li>;
+						})}
+					</ul>
+				) : (
+					''
+				)}
 				<div className='form-group'>
 					<label htmlFor='name'>Campus Name:</label>
 					<input

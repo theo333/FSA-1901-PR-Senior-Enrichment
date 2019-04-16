@@ -20,11 +20,6 @@ app.get('/style.css', (req, res, next) =>
 	res.sendFile(path.join(__dirname, '../client', 'style.css'))
 );
 
-// TODO - not working
-app.get('/#', (req, res) => {
-	res.redirect('/api/schools');
-});
-
 // api routes
 app.get('/api/students', (req, res, next) => {
 	Student.findAll()

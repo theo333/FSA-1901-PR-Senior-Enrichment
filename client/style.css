@@ -1,3 +1,18 @@
+#site-header {
+	font-size: 2.5rem;
+	margin: 1rem auto 1.5rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.btn {
+	margin-right: 0.7rem;
+}
+
+.fa-window-close {
+	font-size: 2rem;
+}
+
 .school-img,
 .student-img {
 	width: 100px;
@@ -8,5 +23,6 @@
 	width: 200px;
 }
 .plus-add-item {
-	font-size: 4rem;
+	font-size: 3rem;
+	margin-bottom: 1rem;
 }

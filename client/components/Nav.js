@@ -9,21 +9,23 @@ const Nav = ({ location }) => {
 	];
 
 	return (
-		<ul className='nav nav-pills'>
-			{pages.map(page => {
-				const { key, url, name } = page;
-				return (
-					<li key={key} className='nav-item'>
-						<Link
-							to={url}
-							className={`nav-link${url === pathname ? ' active' : ''}`}
-						>
-							{name}
-						</Link>
-					</li>
-				);
-			})}
-		</ul>
+		<div className='row justify-content-center'>
+			<ul className='nav nav-pills'>
+				{pages.map(page => {
+					const { key, url, name } = page;
+					return (
+						<li key={key} className='nav-item'>
+							<Link
+								to={url}
+								className={`nav-link${url === pathname ? ' active' : ''}`}
+							>
+								{name}
+							</Link>
+						</li>
+					);
+				})}
+			</ul>
+		</div>
 	);
 };
 

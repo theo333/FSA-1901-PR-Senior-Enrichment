@@ -98,6 +98,15 @@ class StudentForm extends Component {
 
 		return (
 			<form onSubmit={handleSubmit}>
+				{errors.length ? (
+					<ul className='alert alert-danger'>
+						{errors.map((error, idx) => {
+							return <li key={idx}>{error}</li>;
+						})}
+					</ul>
+				) : (
+					''
+				)}
 				<div className='form-group'>
 					<label htmlFor='firstName'>Name:</label>
 					<input

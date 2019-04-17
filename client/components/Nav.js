@@ -9,7 +9,7 @@ const Nav = ({ location }) => {
 	];
 
 	return (
-		<div className='row justify-content-center'>
+		<div>
 			<ul className='nav nav-pills'>
 				{pages.map(page => {
 					const { key, url, name } = page;

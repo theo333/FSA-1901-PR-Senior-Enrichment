@@ -1,15 +1,5 @@
 const schoolSeed = [
 	{
-		name: 'NYU',
-		imageUrl:
-			'https://www.veritasprep.com/blog/wp-content/uploads/2014/09/NYU-Campus.jpg',
-		address: `60 Washington Square South, Suite 210
-	New York, NY 10012`,
-		description: `In 1831, Albert Gallatin, the distinguished statesman who served as secretary of the treasury under Presidents Thomas Jefferson and James Madison, declared his intention to establish "in this immense and fast-growing city ... a system of rational and practical education fitting for all and graciously opened to all."
-
-	Founded in 1831, New York University is now one of the largest private universities in the United States. Of the more than 3,000 colleges and universities in America, New York University is one of only 60 member institutions of the distinguished Association of American Universities. From a student body of 158 during NYU's very first semester, enrollment has grown to more than 50,000 students at three degree-granting campuses in New York City, Abu Dhabi, and Shanghai, and at study away sites in Africa, Asia, Australia, Europe, North and South America. Today, students come from every state in the union and from 133 foreign countries. `
-	},
-	{
 		name: 'Columbia',
 		imageUrl:
 			'https://files1.structurae.de/files/photos/1/20080618/dsc05188_shift.jpg',
@@ -29,6 +19,16 @@ const schoolSeed = [
 			'https://admissions.rutgers.edu/sites/default/files/styles/bean-uuamap/public/media/Images/Non-Home%20Hero/UUA-Home_NB.jpg?itok=QArb665r',
 		address: `17 New Brunswick Ave, New Brunswick, NJ 08234`,
 		description: `Academic and research powerhouse. Stellar faculty. Engaged students. Devotion to community. Whether organizing local food drives, volunteering at health clinics abroad, or researching the causes of autism, Rutgers–New Brunswick provides real-world experiences to prepare you for life. Get ready for an unparalleled adventure!`
+	},
+	{
+		name: 'NYU',
+		imageUrl:
+			'https://www.veritasprep.com/blog/wp-content/uploads/2014/09/NYU-Campus.jpg',
+		address: `60 Washington Square South, Suite 210
+	New York, NY 10012`,
+		description: `In 1831, Albert Gallatin, the distinguished statesman who served as secretary of the treasury under Presidents Thomas Jefferson and James Madison, declared his intention to establish "in this immense and fast-growing city ... a system of rational and practical education fitting for all and graciously opened to all."
+
+	Founded in 1831, New York University is now one of the largest private universities in the United States. Of the more than 3,000 colleges and universities in America, New York University is one of only 60 member institutions of the distinguished Association of American Universities. From a student body of 158 during NYU's very first semester, enrollment has grown to more than 50,000 students at three degree-granting campuses in New York City, Abu Dhabi, and Shanghai, and at study away sites in Africa, Asia, Australia, Europe, North and South America. Today, students come from every state in the union and from 133 foreign countries. `
 	}
 ];
 

@@ -9,7 +9,7 @@ const SchoolSingle = ({ school, schoolStudents }) => {
 	return (
 		<div>
 			<h1>{school ? school.name : ''}</h1>
-			<img src={school ? school.imageUrl : ''} className='school-img-lg' />
+			<img src={school ? school.imageUrl : ''} className='school-img-single' />
 			<p>{school ? school.address : ''}</p>
 			<p>{school ? school.description : ''} </p>
 			<h3>Students</h3>

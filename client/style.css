@@ -1,8 +1,51 @@
-#site-header {
+/* colors 
+#5ead97 - mint
+#5e74ad - blue/purple
+#ad975e - tan/brown
+
+#549b87 - mint - 1 shade darker
+#674238 - darker shade of brown
+*/
+
+#page-wrapper {
+	width: 100%;
+}
+
+#main-header {
+	background: #6485ad;
+}
+
+#site-name {
 	font-size: 2.5rem;
-	margin: 1rem auto 1.5rem;
+	color: #1f705a;
+	font-weight: 600;
+	margin: 0 auto 1.5rem;
 	font-weight: 500;
-	line-height: 1.2;
+	line-height: 1.4;
+	padding-top: 0.5rem;
+}
+
+#main-nav {
+	border-bottom: thin solid #555;
+	padding-bottom: 1rem;
+	font-size: 1.2rem;
+}
+
+.flex-container {
+	display: flex;
+	align-items: flex-start;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+#main-header .flex-container {
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .btn {
@@ -13,14 +56,21 @@
 	font-size: 2rem;
 }
 
-.school-img,
 .student-img {
 	width: 100px;
 	margin-right: 20px;
 }
 
-.school-img-lg {
-	width: 200px;
+/**** SCHOOLS ****/
+.school-group {
+}
+
+.school-img-single {
+	width: 400px;
+}
+
+.school-img-list {
+	width: 400px;
 }
 .plus-add-item {
 	font-size: 3rem;

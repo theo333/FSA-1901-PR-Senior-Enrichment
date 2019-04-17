@@ -30,46 +30,52 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div id='site-header' className='text-center'>
-					Campus Directory
-				</div>
-				<Route render={location => <Nav location={location} />} />
-				<Switch>
-					<Route exact path='/' render={() => <Redirect to='/schools' />} />
-					<Route exact path='/schools' component={Schools} />
-					<Route exact path='/students' component={Students} />
-					<Route
-						exact
-						path='/schools/create'
-						render={({ match, history }) => (
-							<SchoolForm isUpdate='false' match={match} history={history} />
-						)}
-					/>
-					<Route
-						exact
-						path='/students/create'
-						render={({ match, history }) => (
-							<StudentForm isUpdate='false' match={match} history={history} />
-						)}
-					/>
-					<Route
-						exact
-						path='/schools/update/:id'
-						render={({ match, history }) => (
-							<SchoolForm isUpdate='true' match={match} history={history} />
-						)}
-					/>
-					<Route
-						exact
-						path='/students/update/:id'
-						render={({ match, history }) => (
-							<StudentForm isUpdate='true' match={match} history={history} />
-						)}
-					/>
-					<Route path='/schools/:id' component={SchoolSingle} />
-					<Route path='/students/:id' component={StudentSingle} />
-					<Route component={ErrorsPage} />
-				</Switch>
+				<header id='main-header'>
+					<div id='site-name' className='flex-container'>
+						Campus Directory
+					</div>
+					<nav id='main-nav' className='flex-container'>
+						<Route render={location => <Nav location={location} />} />
+					</nav>
+				</header>
+				<section id='content' className='container-fluid'>
+					<Switch>
+						<Route exact path='/' render={() => <Redirect to='/schools' />} />
+						<Route exact path='/schools' component={Schools} />
+						<Route exact path='/students' component={Students} />
+						<Route
+							exact
+							path='/schools/create'
+							render={({ match, history }) => (
+								<SchoolForm isUpdate='false' match={match} history={history} />
+							)}
+						/>
+						<Route
+							exact
+							path='/students/create'
+							render={({ match, history }) => (
+								<StudentForm isUpdate='false' match={match} history={history} />
+							)}
+						/>
+						<Route
+							exact
+							path='/schools/update/:id'
+							render={({ match, history }) => (
+								<SchoolForm isUpdate='true' match={match} history={history} />
+							)}
+						/>
+						<Route
+							exact
+							path='/students/update/:id'
+							render={({ match, history }) => (
+								<StudentForm isUpdate='true' match={match} history={history} />
+							)}
+						/>
+						<Route path='/schools/:id' component={SchoolSingle} />
+						<Route path='/students/:id' component={StudentSingle} />
+						<Route component={ErrorsPage} />
+					</Switch>
+				</section>
 			</Router>
 		);
 	}

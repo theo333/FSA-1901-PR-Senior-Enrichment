@@ -90,9 +90,8 @@ app.put('/api/students/update/:id', (req, res, next) => {
 app.use((err, req, res, next) => {
 	// console.error('backend err msg: ', JSON.stringify(err, null, 3));
 	const errors = err.errors.map(error => error.message);
-	err.status = errors.length ? '400' : '';
 	// console.log('err.status: ', err.status);
-	res.status(errors.length ? '400' : '500').send({ errors });
+	res.status(errors.length ? 400 : 500).send({ errors });
 });
 
 syncAndSeed();

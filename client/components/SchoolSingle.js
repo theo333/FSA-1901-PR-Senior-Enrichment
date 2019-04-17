@@ -27,18 +27,19 @@ const SchoolSingle = ({ school, schoolStudents }) => {
 					  })
 					: 'There are no students currently enrolled. Enroll now or we will be out of business soon!'}
 			</ul>
+			{/* TODO - change to button */}
 			<Link to={`/schools/update/${school ? school.id : ''}`}>Edit School</Link>
 		</div>
 	);
 };
 
 const mapStateToProps = (state, { match }) => {
-	const schoolId = match.params.id;
+	const schoolId = Number(match.params.id);
 	return {
 		schoolStudents: state.students.filter(student => {
-			return student.schoolId === Number(match.params.id);
+			return student.schoolId === schoolId;
 		}),
-		school: state.schools.find(school => school.id === Number(match.params.id))
+		school: state.schools.find(school => school.id === schoolId)
 	};
 };
 

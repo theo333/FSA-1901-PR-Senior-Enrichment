@@ -15,31 +15,31 @@ const Schools = props => {
 			</div>
 
 			<div className=''>
-				<ul className='list-group'>
-					<li className='list-group-item'>test1</li>
-					<li className='list-group-item'>test2</li>
-					<li className='list-group-item'>test3</li>
-					<li className='list-group-item'>test4</li>
-					<li className='list-group-item'>test5</li>
-					<li className='list-group-item'>test6</li>
-				</ul>
 				<div className=''>
-					<ul className='d-flex flex-row flex-wrap justifiy-content-around'>
+					<ul className='list-group'>
 						{schools.map(school => {
 							const { id, name, imageUrl } = school;
 							return (
-								// col-lg-6 float-left
-								<div className=''>
-									<li key={id} className='flex-fill'>
-										<Link to={`/schools/${id}`} className=''>
-											<img src={imageUrl} className='school-img-list' />
-											{name}
+								<li
+									key={id}
+									className='list-group-item d-flex flex-row justify-content-between'
+								>
+									<Link to={`/schools/${id}`} className=''>
+										<img src={imageUrl} className='school-img-list' />
+										{name}
+									</Link>
+									<div className='d-flex flex-column align-items-start align-content-end'>
+										<Link className='item-info' to={`/schools/${id}`}>
+											<i class='fas fa-info-circle' />
 										</Link>
-										<button onClick={() => deleteSchool(id)}>
+										<Link
+											className='item-delete'
+											onClick={() => deleteSchool(id)}
+										>
 											<i className='far fa-trash-alt' />
-										</button>
-									</li>
-								</div>
+										</Link>
+									</div>
+								</li>
 							);
 						})}
 					</ul>

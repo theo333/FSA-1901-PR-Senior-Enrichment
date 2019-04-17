@@ -48,6 +48,8 @@
 	width: 100%;
 }
 
+/**** BUTTONS & ICONS ****/
+
 .btn {
 	margin-right: 0.7rem;
 }
@@ -55,6 +57,18 @@
 .fa-window-close {
 	font-size: 2rem;
 }
+
+.item-info,
+.item-delete {
+	font-size: 2rem;
+	margin-bottom: 25px;
+}
+
+.item-delete {
+	color: #ff7851;
+}
+
+/**** STUDENTS ****/
 
 .student-img {
 	width: 100px;

@@ -17,6 +17,11 @@
 	max-width: 1024px;
 }
 
+.nav-link:hover,
+.nav-link:focus {
+	color: #fff;
+}
+
 #main-header {
 	background: #6485ad;
 }
@@ -29,7 +34,7 @@
 	font-weight: 500;
 	line-height: 1.4;
 	padding-top: 0.5rem;
-	text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.2);
+	text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.25);
 }
 
 #main-nav {
@@ -56,7 +61,7 @@
 }
 
 .plus-add-item {
-	font-size: 2rem;
+	font-size: 1.6rem;
 	margin-bottom: 15px;
 	margin-top: 10px;
 }

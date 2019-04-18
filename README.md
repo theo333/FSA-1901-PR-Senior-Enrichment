@@ -13,6 +13,8 @@ https://senior-enrichment-tcm.herokuapp.com/#/schools
 
 ### Challenges
 - Updating campuses and students
+- Custom error handling
+- Styling
 
 ### Technologies and Concepts Used
 
@@ -27,7 +29,7 @@ https://senior-enrichment-tcm.herokuapp.com/#/schools
 - Axios
 - Deploy to Heroku
 
-# react-minimal template
+# starter template: modified Prof's react-minimal 
 
 - npm install
 - npm run start:dev

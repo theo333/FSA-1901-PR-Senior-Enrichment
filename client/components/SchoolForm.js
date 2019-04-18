@@ -69,72 +69,79 @@ class SchoolForm extends Component {
 		const { id, name, imageUrl, address, description, errors } = this.state;
 		const { deleteSchool, isUpdate } = this.props;
 		return (
-			<form onSubmit={handleSubmit}>
-				{errors.length ? (
-					<ul className='alert alert-danger'>
-						{errors.map((error, idx) => {
-							return <li key={idx}>{error}</li>;
-						})}
-					</ul>
-				) : (
-					''
-				)}
-				<div className='form-group'>
-					<label htmlFor='name'>Campus Name:</label>
-					<input
-						type='text'
-						name='name'
-						value={name}
-						onChange={handleChange}
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='imageUrl'>Image URL:</label>
-					<input
-						type='text'
-						name='imageUrl'
-						value={imageUrl}
-						onChange={handleChange}
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='address'>Address:</label>
-					<input
-						type='text'
-						name='address'
-						value={address}
-						onChange={handleChange}
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='description'>Description:</label>
-					<textarea
-						type='text'
-						name='description'
-						value={description}
-						onChange={handleChange}
-						className='form-control'
-						rows='5'
-					/>
-				</div>
-				<button type='submit' className='btn btn-primary'>
-					{isUpdate === 'true' ? 'Update' : 'Save'}
-				</button>
-				{/* TODO */}
-				{/* {isUpdate === 'true' ? (
+			<div id='school-edit-main' className='container'>
+				<form onSubmit={handleSubmit}>
+					{errors.length ? (
+						<ul className='alert alert-danger'>
+							{errors.map((error, idx) => {
+								return <li key={idx}>{error}</li>;
+							})}
+						</ul>
+					) : (
+						''
+					)}
+					<div className='form-group'>
+						<label htmlFor='name'>Campus Name:</label>
+						<input
+							type='text'
+							name='name'
+							value={name}
+							onChange={handleChange}
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='imageUrl'>Image URL:</label>
+						<input
+							type='text'
+							name='imageUrl'
+							value={imageUrl}
+							onChange={handleChange}
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='address'>Address:</label>
+						<input
+							type='text'
+							name='address'
+							value={address}
+							onChange={handleChange}
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='description'>Description:</label>
+						<textarea
+							type='text'
+							name='description'
+							value={description}
+							onChange={handleChange}
+							className='form-control'
+							rows='5'
+						/>
+					</div>
+					<div>
+						<button type='submit' className='btn btn-primary'>
+							{isUpdate === 'true' ? 'Update' : 'Save'}
+						</button>
+						{/* TODO */}
+						{/* {isUpdate === 'true' ? (
 					<button onClick={() => deleteSchool(id)}>
 						<i className='far fa-trash-alt' />
 					</button>
 				) : (
 					''
 				)} */}
-				<Link to={`${isUpdate === 'true' ? `/schools/${id}` : '/schools'}`}>
-					<i className='far fa-window-close' />
-				</Link>
-			</form>
+						<Link
+							className='icon-cancel'
+							to={`${isUpdate === 'true' ? `/schools/${id}` : '/schools'}`}
+						>
+							<i className='far fa-window-close' />
+						</Link>
+					</div>
+				</form>
+			</div>
 		);
 	}
 }

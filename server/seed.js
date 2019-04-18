@@ -1,27 +1,27 @@
 const schoolSeed = [
 	{
-		name: 'Columbia',
+		name: 'Columbia University',
 		imageUrl:
 			'https://files1.structurae.de/files/photos/1/20080618/dsc05188_shift.jpg',
 		address: `213 Low Library, 535 W. 116th St. · New York, NY 10027`,
 		description: `Columbia University is one of the world's most important centers of research and at the same time a distinctive and distinguished learning environment for undergraduates and graduate students in many scholarly and professional fields. The University recognizes the importance of its location in New York City and seeks to link its research and teaching to the vast resources of a great metropolis. It seeks to attract a diverse and international faculty and student body, to support research and teaching on global issues, and to create academic relationships with many countries and regions. It expects all areas of the University to advance knowledge and learning at the highest level and to convey the products of its efforts to the world.`
 	},
 	{
-		name: 'Fordham',
+		name: 'Fordham University',
 		imageUrl: 'https://rossrambles.files.wordpress.com/2012/11/dsc01731.jpg',
 		address: `113 West 60th Street
 	New York, NY 10023`,
 		description: `We’re a Jesuit, Catholic university. Our spirit comes from the nearly 500-year history of the Jesuits. It’s the spirit of full-hearted engagement—with profound ideas, with communities around the world, with injustice, with beauty, with the entirety of the human experience.`
 	},
 	{
-		name: 'Rutgers',
+		name: 'Rutgers University',
 		imageUrl:
 			'https://admissions.rutgers.edu/sites/default/files/styles/bean-uuamap/public/media/Images/Non-Home%20Hero/UUA-Home_NB.jpg?itok=QArb665r',
 		address: `17 New Brunswick Ave, New Brunswick, NJ 08234`,
 		description: `Academic and research powerhouse. Stellar faculty. Engaged students. Devotion to community. Whether organizing local food drives, volunteering at health clinics abroad, or researching the causes of autism, Rutgers–New Brunswick provides real-world experiences to prepare you for life. Get ready for an unparalleled adventure!`
 	},
 	{
-		name: 'NYU',
+		name: 'New York University',
 		imageUrl:
 			'https://www.veritasprep.com/blog/wp-content/uploads/2014/09/NYU-Campus.jpg',
 		address: `60 Washington Square South, Suite 210

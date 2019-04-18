@@ -97,101 +97,106 @@ class StudentForm extends Component {
 		} = this.state;
 
 		return (
-			<form onSubmit={handleSubmit}>
-				{errors.length ? (
-					<ul className='alert alert-danger'>
-						{errors.map((error, idx) => {
-							return <li key={idx}>{error}</li>;
-						})}
-					</ul>
-				) : (
-					''
-				)}
-				<div className='form-group'>
-					<label htmlFor='firstName'>Name:</label>
-					<input
-						type='text'
-						name='firstName'
-						value={firstName}
-						onChange={handleChange}
-						placeholder='first'
-						className='form-control'
-					/>
-					<input
-						type='text'
-						name='lastName'
-						value={lastName}
-						onChange={handleChange}
-						placeholder='last'
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='email'>Email:</label>
-					<input
-						type='text'
-						name='email'
-						value={email}
-						onChange={handleChange}
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='imageUrl'>Image URL:</label>
-					<input
-						type='text'
-						name='imageUrl'
-						value={imageUrl}
-						onChange={handleChange}
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='gpa'>GPA:</label>
-					<input
-						type='text'
-						name='gpa'
-						value={gpa}
-						onChange={handleChange}
-						className='form-control'
-					/>
-				</div>
-				<div className='form-group'>
-					<label htmlFor='school'>Campus:</label>
-					<select
-						type='text'
-						name='schoolId'
-						value={schoolId}
-						onChange={handleChange}
-						className='form-control'
-					>
-						<option key='none' value=''>
-							-- Select School --
-						</option>
-						{schools.map(school => {
-							return (
-								<option key={school.id} value={school.id}>
-									{school.name}
-								</option>
-							);
-						})}
-					</select>
-				</div>
-				<button type='submit' className='btn btn-primary'>
-					{this.props.isUpdate === 'true' ? 'Update' : 'Save'}
-				</button>
-				{/* TODO */}
-				{/* {isUpdate === 'true' ? (
+			<div id='student-edit-main' className='container'>
+				<form onSubmit={handleSubmit}>
+					{errors.length ? (
+						<ul className='alert alert-danger'>
+							{errors.map((error, idx) => {
+								return <li key={idx}>{error}</li>;
+							})}
+						</ul>
+					) : (
+						''
+					)}
+					<div className='form-group'>
+						<label htmlFor='firstName'>Name:</label>
+						<input
+							type='text'
+							name='firstName'
+							value={firstName}
+							onChange={handleChange}
+							placeholder='first'
+							className='form-control'
+						/>
+						<input
+							type='text'
+							name='lastName'
+							value={lastName}
+							onChange={handleChange}
+							placeholder='last'
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='email'>Email:</label>
+						<input
+							type='text'
+							name='email'
+							value={email}
+							onChange={handleChange}
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='imageUrl'>Image URL:</label>
+						<input
+							type='text'
+							name='imageUrl'
+							value={imageUrl}
+							onChange={handleChange}
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='gpa'>GPA:</label>
+						<input
+							type='text'
+							name='gpa'
+							value={gpa}
+							onChange={handleChange}
+							className='form-control'
+						/>
+					</div>
+					<div className='form-group'>
+						<label htmlFor='school'>Campus:</label>
+						<select
+							type='text'
+							name='schoolId'
+							value={schoolId}
+							onChange={handleChange}
+							className='form-control'
+						>
+							<option key='none' value=''>
+								-- Select School --
+							</option>
+							{schools.map(school => {
+								return (
+									<option key={school.id} value={school.id}>
+										{school.name}
+									</option>
+								);
+							})}
+						</select>
+					</div>
+					<button type='submit' className='btn btn-primary'>
+						{this.props.isUpdate === 'true' ? 'Update' : 'Save'}
+					</button>
+					{/* TODO */}
+					{/* {isUpdate === 'true' ? (
 					<button onClick={() => deleteStudent(id)}>
 						<i className='far fa-trash-alt' />
 					</button>
 				) : (
 					''
 				)} */}
-				<Link to={`${isUpdate === 'true' ? `/students/${id}` : '/students'}`}>
-					<i className='far fa-window-close' />
-				</Link>
-			</form>
+					<Link
+						className='icon-cancel'
+						to={`${isUpdate === 'true' ? `/students/${id}` : '/students'}`}
+					>
+						<i className='far fa-window-close' />
+					</Link>
+				</form>
+			</div>
 		);
 	}
 }

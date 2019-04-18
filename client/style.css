@@ -5,10 +5,16 @@
 
 #549b87 - mint - 1 shade darker
 #674238 - darker shade of brown
+#9b5468
+#1f705a
 */
 
 #page-wrapper {
 	width: 100%;
+}
+
+#content {
+	max-width: 1024px;
 }
 
 #main-header {
@@ -23,6 +29,7 @@
 	font-weight: 500;
 	line-height: 1.4;
 	padding-top: 0.5rem;
+	text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.2);
 }
 
 #main-nav {
@@ -48,20 +55,21 @@
 	width: 100%;
 }
 
+.plus-add-item {
+	font-size: 2rem;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
 /**** BUTTONS & ICONS ****/
 
 .btn {
 	margin-right: 0.7rem;
 }
 
-.fa-window-close {
+.icon-cancel {
 	font-size: 2rem;
-}
-
-.item-info,
-.item-delete {
-	font-size: 2rem;
-	margin-bottom: 25px;
+	margin-left: 20px;
 }
 
 .item-delete {
@@ -70,23 +78,60 @@
 
 /**** STUDENTS ****/
 
-.student-img {
-	width: 100px;
-	margin-right: 20px;
+#students-list-icons .item-info,
+#students-list-icons .item-delete {
+	font-size: 1.4rem;
+	margin-left: 35px;
+}
+
+.student-single-img {
+	width: 200px;
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 /**** SCHOOLS ****/
-.school-group {
+
+.school-list-name {
+	font-size: 1.2rem;
 }
 
-.school-img-single {
+.school-list-img {
 	width: 400px;
+	margin-right: 20px;
 }
 
-.school-img-list {
-	width: 400px;
+#school-action-icons .item-info,
+#school-action-icons .item-delete,
+#student-action-icons .item-info,
+#student-action-icons .item-delete {
+	font-size: 2rem;
+	margin-bottom: 25px;
 }
-.plus-add-item {
-	font-size: 3rem;
-	margin-bottom: 1rem;
+
+#school-single-main .list-group-item,
+#student-single-main .list-group-item {
+	border: none;
+}
+
+.school-single-img {
+	width: 400px;
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+
+#school-single-main,
+#school-edit-main,
+#student-single-main,
+#student-edit-main {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+#school-single-students .student-name {
+	font-size: 1.1rem;
+}
+
+.form-control::placeholder {
+	color: #c7c7c7;
 }

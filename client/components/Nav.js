@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Nav = ({ location }) => {
 	const { pathname } = location.location;
@@ -15,12 +15,9 @@ const Nav = ({ location }) => {
 					const { key, url, name } = page;
 					return (
 						<li key={key} className='nav-item'>
-							<Link
-								to={url}
-								className={`nav-link${url === pathname ? ' active' : ''}`}
-							>
+							<NavLink to={url} className={`nav-link`} activeClassName='active'>
 								{name}
-							</Link>
+							</NavLink>
 						</li>
 					);
 				})}
